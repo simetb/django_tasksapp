@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% load static %} {% block styles%}
+<link rel="stylesheet" href="{% static 'css/authentication/style.css' %}" />
+{% endblock %} {% block title %}Task Signin{% endblock %} {% block content %}
+<div class="container">
+  <form  action="{% url 'dosignup' %}" method="post" class="position-absolute top-50 start-50 translate-middle rounded-3">
+    {% csrf_token %}
+    <div class="format-center">
+      <h1>TaskApp</h1>
+      <h3>Signin</h3>
+
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password1"
+          name="password1"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Repeat password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password2"
+          name="password2"
+        />
+      </div>
+      <button type="submit">Signin</button>
+      <a href="{% url 'login' %}">Or Login</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
