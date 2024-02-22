@@ -1,0 +1,53 @@
+{% extends "base.html" %} {% load static %} {% block styles%}
+<link rel="stylesheet" href="{% static 'css/tasks/style.css' %}" />
+{% endblock %} {% block title %}Home{% endblock %} {% block content %}
+<div class="container">
+  {% include 'navbar.html' %}
+  <div class="container custom-table">
+    <h1 style="color: #dde6ed">{{ username }} TASKS</h1>
+
+    {% if message %}
+      <p class="confirmacion">{{message}}</p>
+    {% endif %}
+    
+    
+    <table class="table container">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Hours</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in tasks %}
+        <tr>
+          <th scope="row">{{task.id}}</th>
+          <td>{{task.name}}</td>
+          <td>{{task.description}}</td>
+          <td>{{task.duration}}</td>
+          <td>
+            <div class="d-flex">
+              <a class="mx-2" href="{% url 'editTask' task.id %}"
+                ><i
+                  class="fa-solid fa-pen-to-square"
+                  style="color: rgb(130, 130, 253)"
+                ></i
+              ></a>
+              <a class="mx-2" href="{% url 'deleteTask' task.id %}"
+                ><i
+                  class="fa-solid fa-trash"
+                  style="color: rgb(253, 90, 90)"
+                ></i
+              ></a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
